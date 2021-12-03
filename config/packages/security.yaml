@@ -21,9 +21,13 @@ security:
         main:
             lazy: true # do not authenticate user until you need to
             provider: app_user_provider # ties the firewall to the user provider entity
-
+            remember_me: #remember me on sign in
+                secret: '%kernel.secret%'
+                signature_properties: [password] #checks to see if password is correct -> if remember me cookie is set but password has changed then we sign the user out
+#                always_remember_me: true
             logout: true # configured to /logout
             custom_authenticator: App\Security\LoginFormAuthenticator
+            entry_point: App\Security\LoginFormAuthenticator #advises where the entrypoint code is for users who have not logged in but are attempting to access a path that requires authorisation
 
             # activate different ways to authenticate
             # https://symfony.com/doc/current/security.html#firewalls-authentication
@@ -34,5 +38,5 @@ security:
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
     access_control:
-    # - { path: ^/admin, roles: ROLE_ADMIN }
-    # - { path: ^/profile, roles: ROLE_USER }
+     - { path: ^/admin, roles: ROLE_ADMIN } # if the path begins with /admin - deny access unless the user has a role of ROLE_ADMIN
+     - { path: ^/profile, roles: ROLE_USER }
