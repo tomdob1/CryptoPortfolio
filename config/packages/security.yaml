@@ -24,7 +24,7 @@ security:
             remember_me: #remember me on sign in
                 secret: '%kernel.secret%'
                 signature_properties: [password] #checks to see if password is correct -> if remember me cookie is set but password has changed then we sign the user out
-#                always_remember_me: true
+                always_remember_me: true
             logout: true # configured to /logout
             custom_authenticator: App\Security\LoginFormAuthenticator
             entry_point: App\Security\LoginFormAuthenticator #advises where the entrypoint code is for users who have not logged in but are attempting to access a path that requires authorisation

@@ -3,6 +3,7 @@
 
 namespace App\Controller;
 
+use Exception;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -22,9 +23,10 @@ class SecurityController extends AbstractController
 
     /**
      * @Route("/logout", name="app_logout")
+     * @throws Exception
      */
     public function logout(AuthenticationUtils $authenticationUtils): Response
     {
-        throw new \Exception('logout() controller reached -> this should be done via .yaml');
+        throw new Exception('logout() controller reached -> this should be done via .yaml');
     }
 }

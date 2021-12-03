@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+{% block title %}Log In!{% endblock %}
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <h1>Welcome to the Crypto Portfolio!</h1>
+            <div class="cryptoArea">
+                <ol class="list-group list-group-numbered">
+
+                </ol>
+                {% for d in data %}
+                    <li class="list-group-item d-flex justify-content-between align-items-start">
+                        <div class="ms-2 me-auto">
+                            <div class="fw-bold">{{ d.name }}</div>
+                            {{ d.symbol }}
+                            <div style="display:flex">
+                                <img src="{{ d.image }}" style="width:40px;height:40px;" alt=""/>
+                            </div>
+                        </div>
+                        <span class="badge bg-primary rounded-pill">USD $ {{ d.current_price }}</span>
+                    </li>
+
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock %}
